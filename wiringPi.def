@@ -1,0 +1,3 @@
+headers = wiringPi.h stdio.h stdlib.h unistd.h string.h stdarg.h malloc.h fcntl.h crypt.h
+compilerOpts =
+excludedFunctions =
