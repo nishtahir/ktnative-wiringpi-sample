@@ -4,7 +4,6 @@ import kotlinx.cinterop.*
 val LED = 0
 
 fun main(args: Array<String>) {
-    println("Kotlin native wiringPi blink")
 
     wiringPiSetup()
     pinMode(LED, OUTPUT)

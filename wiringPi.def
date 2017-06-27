@@ -1,3 +1,1 @@
-headers = wiringPi.h wiringPiI2C.h wiringPiSPI.h stdio.h
-compilerOpts =
-excludedFunctions =
+headers = wiringPi.h wiringPiI2C.h wiringPiSPI.h
