@@ -10,7 +10,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.3.4"
+        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.4"
     }
 }
 
