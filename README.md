@@ -17,3 +17,9 @@ To start the build process use the command `./gradlew buildWithDocker`.
 You will se a warning that the target is not enabled on the current host.
 This message is produced before the docker container has been started
 and can be ignored.
+
+## Deploying the artifact to a Raspberry Pi
+
+In order to copy and execute the generated artifact on a Raspberry Pi
+make sure to be able to open a ssh connection using your key and
+execute `./gradlew deploy`.

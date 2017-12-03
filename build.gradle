@@ -1,6 +1,3 @@
-group 'com.nishtahir'
-version '1.0-SNAPSHOT'
-
 buildscript {
     repositories {
         mavenCentral()
@@ -14,7 +11,16 @@ buildscript {
     }
 }
 
+plugins {
+    id 'org.hidetake.ssh' version '2.9.0'
+}
+
+group 'com.nishtahir'
+version '1.0-SNAPSHOT'
+
 apply plugin: 'konan'
+
+ext.programName = 'ktpi'
 
 konan.targets = ['raspberrypi']
 
@@ -23,7 +29,7 @@ konanArtifacts {
         includeDirs 'src/main/c_interop/wiringPi'
     }
 
-    program('ktpi') {
+    program(programName) {
         libraries {
             artifact 'wiringPi'
         }
@@ -47,4 +53,23 @@ task buildWithDocker(type: Exec) {
                    "gradle",
                    "-Dorg.gradle.daemon=false",
                    "build"]
+}
+
+remotes {
+    raspberry {
+        host = "${execTargetHost}"
+        user = "${execTargetUser}"
+        identity = file("${System.properties['user.home']}/.ssh/id_rsa")
+    }
+}
+
+task deploy {
+    doLast {
+        ssh.run {
+            session(remotes.raspberry) {
+                put from: "${buildDir}/konan/bin/raspberrypi/${programName}.kexe", into: "${execTargetDir}"
+                execute "${execTargetDir}/${programName}.kexe"
+            }
+        }
+    }
 }
