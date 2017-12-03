@@ -68,6 +68,7 @@ task deploy {
         ssh.run {
             session(remotes.raspberry) {
                 put from: "${buildDir}/konan/bin/raspberrypi/${programName}.kexe", into: "${execTargetDir}"
+                execute "chmod 755 ${execTargetDir}/${programName}.kexe"
                 execute "${execTargetDir}/${programName}.kexe"
             }
         }
