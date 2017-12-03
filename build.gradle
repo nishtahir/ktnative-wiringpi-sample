@@ -30,3 +30,21 @@ konanArtifacts {
         linkerOpts '-lwiringPi -Llibs/'
     }
 }
+
+task buildWithDocker(type: Exec) {
+    workingDir = projectDir
+
+    commandLine = ["${dockerCmd}",
+                   "run",
+                   "--rm",
+                   "-v",
+                   "${projectDir}:/home/gradle/project",
+                   "-v",
+                   "${konanCacheDir}:/home/gradle/.konan",
+                   "-w",
+                   "/home/gradle/project",
+                   "gradle",
+                   "gradle",
+                   "-Dorg.gradle.daemon=false",
+                   "build"]
+}

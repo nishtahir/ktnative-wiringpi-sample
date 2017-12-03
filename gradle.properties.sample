@@ -1,0 +1,4 @@
+dockerCmd = docker
+# The konan plugin will store downloaded artifacts for the build process in the following directory. This prevents
+# the container to download the toolchain on each run and can be shared between projects.
+konanCacheDir = /path/to/.konan
