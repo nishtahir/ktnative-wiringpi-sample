@@ -10,7 +10,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.4"
+        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.3.4"
     }
 }
 
@@ -20,19 +20,13 @@ konan.targets = ['raspberrypi']
 
 konanArtifacts {
     interop('wiringPi') {
-        defFile 'wiringPi.def'
-        includeDirs 'src/include/'
-        linkerOpts '-lwiringPi -Lsrc/include/'
-//        target 'raspberrypi'
+        includeDirs 'src/main/c_interop/wiringPi'
     }
 
     program('ktpi') {
-        srcFiles 'src/main/'
-
         libraries {
             artifact 'wiringPi'
         }
-
-//        target('raspberrypi') {}
+        linkerOpts '-lwiringPi -Llibs/'
     }
 }
