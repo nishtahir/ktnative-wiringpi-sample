@@ -49,3 +49,6 @@ kotstd/ll
 
 #test teamcity property: commitable only with -f
 backend.native/tests/teamcity-test.property
+
+# provide local properties by using the sample-file included in the repository
+gradle.properties
